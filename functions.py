@@ -279,6 +279,20 @@ def tel_upload_file(file_id):
     with open(file_pathh, "wb") as f:
         f.write(file_content)
 
+
+
+def start(update, context):
+    chat_id = update.effective_chat.id
+    context.bot.send_message(chat_id=chat_id, text="Hello there. Provide any English word and I will give you a bunch "
+                                                   "of information about it.")
+
+# run the start function when the user invokes the /start command 
+dispatcher.add_handler(CommandHandler("hi", start))
+
+# invoke the get_word_info function when the user sends a message 
+# that is not a command.
+dispatcher.add_handler(MessageHandler(Filters.text, get_word_info))
+
 updater.start_webhook(listen="0.0.0.0",
                       port=int(os.environ.get('PORT', 5000)),
                       url_path=TOKEN,
