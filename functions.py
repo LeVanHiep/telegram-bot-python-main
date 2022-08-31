@@ -282,5 +282,5 @@ def tel_upload_file(file_id):
 updater.start_webhook(listen="0.0.0.0",
                       port=int(os.environ.get('PORT', 5000)),
                       url_path=TOKEN,
-                      webhook_url='https://dictionary-bot1.herokuapp.com/' + TOKEN
+                      webhook_url='https://telegram-bot-hiep.herokuapp.com/' + TOKEN
                       )
