@@ -291,7 +291,7 @@ dispatcher.add_handler(CommandHandler("hi", start))
 
 # invoke the get_word_info function when the user sends a message 
 # that is not a command.
-dispatcher.add_handler(MessageHandler(Filters.text, get_word_info))
+# dispatcher.add_handler(MessageHandler(Filters.text, get_word_info))
 
 updater.start_webhook(listen="0.0.0.0",
                       port=int(os.environ.get('PORT', 5000)),
