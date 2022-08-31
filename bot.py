@@ -83,7 +83,7 @@ def bowling(update, context):
     update.message.reply_dice(emoji="🎳")
 
 
-dispatcher.add_handler(CommandHandler("help", hi))
+dispatcher.add_handler(CommandHandler("help", help))
 dispatcher.add_handler(CommandHandler("hi", hi))
 dispatcher.add_handler(CommandHandler("message_count", message_count))
 dispatcher.add_handler(CommandHandler("id", id))
