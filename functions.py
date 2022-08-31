@@ -1,10 +1,17 @@
+import os
 import requests
 import json
 from datetime import datetime
 
+from telegram.ext import Updater, MessageHandler, Filters
+from telegram.ext import CommandHandler
+
 # token that we get from the BotFather
 TOKEN = "5352912214:AAGrhEjJz0NOeyGY7QHrzk0w9iyfw16nQrw"
 
+
+updater = Updater(token=TOKEN, use_context=True)
+dispatcher = updater.dispatcher
 
 # Reading the JSON format when we send the text message and extracting the chat id of the user and the text that user send to the bot
 def tel_parse_data(message):
@@ -272,3 +279,8 @@ def tel_upload_file(file_id):
     with open(file_pathh, "wb") as f:
         f.write(file_content)
 
+updater.start_webhook(listen="0.0.0.0",
+                      port=int(os.environ.get('PORT', 5000)),
+                      url_path=TOKEN,
+                      webhook_url='https://dictionary-bot1.herokuapp.com/' + TOKEN
+                      )
