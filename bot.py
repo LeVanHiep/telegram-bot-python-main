@@ -13,6 +13,10 @@ def format_update_to_dict(update):
     data = json.loads(data) #convert string to dict type
     return data
 
+
+def help(update, context):
+    update.message.reply_text("There are all available commands: hi, message_count, id, name, photo, meme, gif, dice, slot_machine, darts, basketball, football, bowling")
+
 def hi(update, context):
     data = format_update_to_dict(update)
     update.message.reply_text("Hello " + data["message"]["from"]['first_name'] + "!")
@@ -29,9 +33,9 @@ def name(update, context):
     data = format_update_to_dict(update)
     update.message.reply_text("Your full name is " + data['message']['from']['first_name'] + " " + data['message']['from']['last_name'])
 
-def image(update, context):
+def photo(update, context):
     data = format_update_to_dict(update)
-    update.message.reply_text(data['message']['from']['first_name'] + ", here is a random image:")
+    update.message.reply_text(data['message']['from']['first_name'] + ", here is a random photo:")
     update.message.reply_photo('https://picsum.photos/200/300/?random&rnd' + str(datetime.now()))
 
 def meme(update, context):
@@ -79,11 +83,12 @@ def bowling(update, context):
     update.message.reply_dice(emoji="🎳")
 
 
-dispatcher.add_handler(CommandHandler("hii", hi))
+dispatcher.add_handler(CommandHandler("help", hi))
+dispatcher.add_handler(CommandHandler("hi", hi))
 dispatcher.add_handler(CommandHandler("message_count", message_count))
 dispatcher.add_handler(CommandHandler("id", id))
 dispatcher.add_handler(CommandHandler("name", name))
-dispatcher.add_handler(CommandHandler("image", image))
+dispatcher.add_handler(CommandHandler("photo", photo))
 dispatcher.add_handler(CommandHandler("meme", meme))
 dispatcher.add_handler(CommandHandler("gif", gif))
 dispatcher.add_handler(CommandHandler("dice", dice))
